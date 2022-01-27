@@ -11,16 +11,6 @@ function App() {
   const [room, setRoom] = useState("");
   const[ isLogged, setIsLogged]=useState(false)
 
-// const joinRoom=()=>{
-//     if(username!=='' && room !=='' )
-//     {
-//       socket.emit('joinRoom', room)
-//       setIsLogged(true)
-//     }
-// }
-
-
- 
   return (
     
     <div className='App'>
