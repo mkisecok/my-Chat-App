@@ -1,20 +1,20 @@
 
-import {useState,io, Box,AccountCircle, TextField,ChatIcon,Button,ChatContext,useContext} from './index'
+import { Box,AccountCircle, TextField,ChatIcon,Button,io} from './index'
 import './Login.scss';
 
-const socket = io.connect("http://localhost:3001");
+ const socket = io.connect("http://localhost:3001");
 
-function Login() {
-    // const [login,setLogin]=useState({username:'',
-    // room:'',
-    // isLogged:false});
-const {login, setLogin}=useContext(ChatContext)
+function Login({setRoom,setUsername,room,username,setIsLogged}) {
+    
+
+
 const joinRoom=()=>{
-    if(login.username!=='' && login.room !=='' )
+    if(username!=='' && room !=='' )
     {
-      socket.emit('joinRoom', login.room)
-      setLogin({isLogged:true})
+      socket.emit('joinRoom', room)
+      setIsLogged(true)
     }
+    
 }
 
   return (
@@ -26,7 +26,7 @@ const joinRoom=()=>{
         id="input-with-sx" 
         label="Username" 
         variant="standard"
-        onChange={(e)=>setLogin({username:e.target.value})} />
+        onChange={(e)=>setUsername(e.target.value)} />
       </Box>
       <Box sx={{ display: 'flex',           alignItems: 'flex-end' }} className='box'>
         <ChatIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
@@ -34,7 +34,7 @@ const joinRoom=()=>{
         id="input-with-sx" 
         label="Chat Room" 
         variant="standard" 
-        onChange={(e)=>setLogin({room:e.target.value})}/>
+        onChange={(e)=>setRoom(e.target.value)}/>
       </Box>
       <Button 
       variant="contained" 
