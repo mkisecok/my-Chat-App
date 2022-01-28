@@ -7,6 +7,7 @@ import MessageIcon from '@mui/icons-material/Message';
 import Button from '@mui/material/Button';
 import { useContext } from 'react';
 import { ChatContext } from '../ChatContext';
+import Picker from 'emoji-picker-react';
 
 export{
     useEffect,
@@ -18,5 +19,6 @@ export{
     MessageIcon,
     Button,
     useContext,
-    ChatContext
+    ChatContext,
+    Picker
 }

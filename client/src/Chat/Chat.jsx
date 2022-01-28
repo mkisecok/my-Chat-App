@@ -1,5 +1,8 @@
-import { useEffect, useState, ScrollToBottom,InputAdornment,TextField,SendIcon,MessageIcon,Button,useContext,ChatContext} from './index'
+import { useEffect, useState, ScrollToBottom,InputAdornment,TextField,SendIcon,MessageIcon,Button,useContext,ChatContext,Picker} from './index'
 import './Chat.scss'
+
+
+
 export const Chat = () => {
   
   const {socket,username,room}=useContext(ChatContext)
@@ -7,6 +10,11 @@ export const Chat = () => {
   const [currentMessage,setCurrentMessage]=useState('');
   
   const [messages,setMessages]=useState([]);
+  // const [showEmoji, setShowEmoji]=useState(false);
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
+  };
 
   const sendMessage= async()=>{
     if(currentMessage !== '')
@@ -66,12 +74,24 @@ export const Chat = () => {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <MessageIcon />
+              {/* <MessageIcon /> */}
+              {
+                chosenEmoji?
+                <span > {chosenEmoji.emoji}</span> 
+                :
+                <span>😀</span> 
+              }
+              <Picker onEmojiClick={onEmojiClick} />
+             
             </InputAdornment>
           ),
         }}
         variant="standard"
       />
+      {/* <span className='emoji'>
+      <Picker set='google' />
+      </span> */}
+      
       <Button 
       variant="contained" 
       className='button'
