@@ -2,9 +2,12 @@
     margin-top: 50px;
     width: 400px;
     height: 420px;
+    border-radius: 2px;
+    
     .chat-header{
-        background-color: black;
+        background-color: rgb(71, 84, 92);
         color: white;
+        border-radius: 2px;
         padding: 15px;
         font-size: large;
         cursor: pointer;
@@ -16,6 +19,7 @@
         padding: 10px;
         background-color: rgb(246, 247, 248);
         height:600px;
+        border-radius: 2px;
         position: relative;
         .scroll{
             width: 100%;

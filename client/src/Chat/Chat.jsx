@@ -2,12 +2,12 @@ import { useEffect, useState, ScrollToBottom,InputAdornment,TextField,SendIcon,M
 import './Chat.scss'
 export const Chat = ({socket,username,room}) => {
  
-  
   const [currentMessage,setCurrentMessage]=useState('');
+  
   const [messages,setMessages]=useState([]);
 
   const sendMessage= async()=>{
-    if(currentMessage !=='')
+    if(currentMessage !== '')
     {
       const messageData={
         room:room,
@@ -25,7 +25,7 @@ export const Chat = ({socket,username,room}) => {
       setMessages((list)=>[...list,data])
     })
   },[socket])
-console.log(messages);
+
   return (
   <div className='Chat'>
     <div className='chat-header'>Room Chatting</div>
