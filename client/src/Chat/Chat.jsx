@@ -1,6 +1,8 @@
-import { useEffect, useState, ScrollToBottom,InputAdornment,TextField,SendIcon,MessageIcon,Button} from './index'
+import { useEffect, useState, ScrollToBottom,InputAdornment,TextField,SendIcon,MessageIcon,Button,useContext,ChatContext} from './index'
 import './Chat.scss'
-export const Chat = ({socket,username,room}) => {
+export const Chat = () => {
+  
+  const {socket,username,room}=useContext(ChatContext)
  
   const [currentMessage,setCurrentMessage]=useState('');
   

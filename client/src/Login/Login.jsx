@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box,AccountCircle, TextField,ChatIcon,Button} from './index'
+import { Box,AccountCircle, TextField,ChatIcon,Button,useContext,ChatContext} from './index'
 import './Login.scss'
-export default function Login({username,room,socket,setIsLogged,setRoom,setUsername}) {
+export default function Login() {
+
+    const {username,room,socket,setIsLogged,setRoom,setUsername}= useContext(ChatContext);
 
     const joinRoom=()=>{
         if(username!=='' && room !=='' )
