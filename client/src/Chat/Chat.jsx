@@ -66,10 +66,12 @@ export const Chat = () => {
     </ScrollToBottom>
     </div>
     <div className='chat-footer'>
-    <span onClick={()=>setShowEmoji(!showEmoji)} >😀</span>
-    {
-        showEmoji &&<Picker onEmojiClick={onEmojiClick} className='picker'/>
-    }
+     <div className='footer-group'>
+       
+      
+    <span  onClick={()=>setShowEmoji(!showEmoji)} >😀</span>
+    
+    
     <TextField
         id="input-with-icon-textfield"
         className='input'
@@ -87,6 +89,10 @@ export const Chat = () => {
       >
         <SendIcon/>
       </Button>
+      </div> 
+      {
+        showEmoji &&<Picker onEmojiClick={onEmojiClick} pickerStyle={{marginTop:'1em', width:'100%', height:'15rem'}}/>
+    }
     </div>
   </div>
   );

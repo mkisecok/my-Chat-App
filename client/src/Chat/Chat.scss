@@ -1,24 +1,25 @@
 .Chat{
     margin-top: 50px;
-    width: 400px;
-    height: 420px;
+    width: 75%;
+    
     border-radius: 2px;
     
     .chat-header{
         background-color: rgb(71, 84, 92);
         color: white;
         border-radius: 2px;
-        padding: 15px;
+        padding: 1em;
         font-size: large;
         cursor: pointer;
-        height: 50px;
+        height: 3em;
+        margin-bottom: 5px;
 
     }
     .chat-body{
-        border: 1px solid lightseagreen;
-        padding: 10px;
+        border: 1px solid #3a918c;
+        padding: 1em 0 1em 1em;
         background-color: rgb(246, 247, 248);
-        height:600px;
+        height:60vh;
         border-radius: 2px;
         position: relative;
         .scroll{
@@ -38,9 +39,10 @@
             justify-content: flex-end;
             align-items: flex-start;
             .message-content{
-                padding: 15px;
+                padding: 1em;
                 color: #fff;
                 border-radius: 5px;
+                margin-bottom: 2px;
 
             }
             .author{
@@ -54,25 +56,39 @@
         }
         #yours{
             align-items: flex-end;
-            .message-content{background-color: rgb(75, 133, 187);}
+            .message-content{background-color: #4b85bb;}
             }
          #others{
              align-items: flex-start;
              .message-content{
-                 background-color: rgb(122, 203, 206);
+                 background-color: #549597;
              }
          }   
     }
     .chat-footer{
         display: flex;
+        flex-direction: column;
+        .footer-group{
+        display: flex;
         justify-content:space-between;
         align-items: center;
-        margin: 10px 0;
+         margin-top: 1em;
+         span{
+             opacity: 0.6;
+             
+             &:hover{
+                 opacity: 0.9;
+                 cursor: pointer;
+             }
+         }
+        }
+        
         .input{
-            width:330px;
+            width:75%;
         }
         .button{
             justify-self: flex-end;
+            width: 15%;
         }
     }
 }
