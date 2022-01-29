@@ -1,5 +1,6 @@
-import { useEffect, useState, ScrollToBottom,TextField,SendIcon,Button,useContext,ChatContext,Picker} from './index'
+import { useEffect, useState, ScrollToBottom,TextField,SendIcon,Button,useContext,ChatContext,Picker,DarkModeIcon,LightModeIcon} from './index'
 import './Chat.scss'
+
 
 
 
@@ -10,6 +11,7 @@ export const Chat = () => {
   const [currentMessage,setCurrentMessage]=useState('');
   const [messages,setMessages]=useState([]);
   const [showEmoji, setShowEmoji]=useState(false);
+  const [mode,setMode]= useState(true);
 
   const onEmojiClick =  (event, emojiObject) => {
     setCurrentMessage(prevInput=> prevInput + emojiObject.emoji);
@@ -40,8 +42,18 @@ export const Chat = () => {
 
   return (
   <div className='Chat'>
-    <div className='chat-header'>Room Chatting</div>
-    <div className='chat-body'>
+    <div className='chat-header'>
+      <h3> Room Chatting</h3>
+      <span onClick={()=>setMode(!mode)}>
+      {
+        mode?
+        <LightModeIcon />
+        :
+        <DarkModeIcon />
+      }
+      </span>
+     </div>
+    <div className={`chat-body ${mode && 'dark' }`}>
     <ScrollToBottom className='scroll'>
 {
   messages.map((messageData,i)=>{
@@ -54,7 +66,7 @@ export const Chat = () => {
           }
         </p>
         <div className='message-bottom'>
-        <span className='author'>{messageData.author}</span>
+        <span className='author'>{messageData.author===username ?'You': messageData.author}</span>
         <span className='time'> {messageData.time}</span>
         </div>
         

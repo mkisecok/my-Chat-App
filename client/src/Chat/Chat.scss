@@ -1,27 +1,40 @@
 .Chat{
     margin-top: 50px;
     width: 75%;
-    
     border-radius: 2px;
     
+    
     .chat-header{
-        background-color: rgb(71, 84, 92);
+        background-color: #47545c;
         color: white;
         border-radius: 2px;
-        padding: 1em;
-        font-size: large;
-        cursor: pointer;
-        height: 3em;
+        padding: 5px;
+        
         margin-bottom: 5px;
-
+        display: flex;
+        justify-content: space-between;
+        h3{
+            cursor: pointer;
+        }
+        span{
+            align-self: center;
+            cursor: pointer;
+        }
     }
+    .dark{
+        background-color:#47545c;
+        color: #fff;
+        
+    }
+    
     .chat-body{
         border: 1px solid #3a918c;
-        padding: 1em 0 1em 1em;
-        background-color: rgb(246, 247, 248);
+        padding: 1em 0 ;
+        
         height:60vh;
         border-radius: 2px;
         position: relative;
+       
         .scroll{
             width: 100%;
             height: 100%;
@@ -42,14 +55,16 @@
                 padding: 1em;
                 color: #fff;
                 border-radius: 5px;
-                margin-bottom: 2px;
+                margin: 5px;
 
             }
             .author{
                 font-weight: 600;
+                margin-left: 5PX;
             }
             .time{
                 opacity: 0.6;
+                margin-right: 5PX;
             }
             
             
