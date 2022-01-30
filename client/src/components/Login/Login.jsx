@@ -1,9 +1,11 @@
 
+import { useNavigate } from 'react-router-dom';
 import { Box,AccountCircle, TextField,ChatIcon,Button,useContext,ChatContext} from './index'
 import './Login.scss'
 
 
 export default function Login() {
+const navigate = useNavigate();
 
     const {username,room,socket,setIsLogged,setRoom,setUsername}= useContext(ChatContext);
 
@@ -11,6 +13,7 @@ export default function Login() {
         if(username!=='' && room !=='' )
         {
           socket.emit('joinRoom', room)
+          navigate("/chat")
           setIsLogged(true)
         }
     }
@@ -37,7 +40,8 @@ export default function Login() {
     <Button 
     variant="contained" 
     className='button'
-    onClick={joinRoom}
+    onClick={()=>{
+      joinRoom()}}
     >Join a Room</Button>
 
 

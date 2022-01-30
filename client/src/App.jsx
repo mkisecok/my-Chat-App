@@ -1,9 +1,11 @@
 import { useState} from 'react'
 import './App.scss';
 import io from 'socket.io-client';
-import { Chat } from './Chat/Chat'
-import Login from './Login/Login'
+import { Chat } from './components/Chat/Chat'
+import Login from './components/Login/Login'
 import { ChatContext } from './ChatContext'
+
+
 const socket = io.connect("http://localhost:3001");
 
 function App() {
@@ -17,18 +19,22 @@ function App() {
     setIsLogged,socket
   }
   return (
-    <ChatContext.Provider value={value}>
+
+<ChatContext.Provider value={value}>
+
+ 
     <div className='App'>
     {
-      !isLogged
+      !isLogged 
       ?
       <Login/>
       :
       <Chat/>
     }
     </div>
-    </ChatContext.Provider>
     
+   
+    </ChatContext.Provider>
   );
 }
 

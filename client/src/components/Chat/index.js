@@ -6,7 +6,7 @@ import SendIcon from '@mui/icons-material/Send';
 import MessageIcon from '@mui/icons-material/Message';
 import Button from '@mui/material/Button';
 import { useContext } from 'react';
-import { ChatContext } from '../ChatContext';
+import { ChatContext } from '../../ChatContext';
 import Picker from 'emoji-picker-react';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
