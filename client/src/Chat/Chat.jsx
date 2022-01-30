@@ -25,6 +25,7 @@ export const Chat = () => {
       const messageData={
         room:room,
         author:username,
+        userId:socket.id,
         message:currentMessage,
         time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),
       };
@@ -58,7 +59,7 @@ export const Chat = () => {
 {
   messages.map((messageData,i)=>{
     return(
-      <div key={i} className='message' id={username===messageData.author ? 'yours':'others' }>
+      <div key={i} className='message' id={socket.id===messageData.userId ? 'yours':'others' }>
 
         <p className='message-content'>
           {
@@ -66,7 +67,7 @@ export const Chat = () => {
           }
         </p>
         <div className='message-bottom'>
-        <span className='author'>{messageData.author===username ?'You': messageData.author}</span>
+        <span className='author'>{messageData.userId===socket.id ?'You': messageData.author}</span>
         <span className='time'> {messageData.time}</span>
         </div>
         
