@@ -12,6 +12,7 @@ export const Chat = () => {
   const [messages,setMessages]=useState([]);
   const [showEmoji, setShowEmoji]=useState(false);
   const [mode,setMode]= useState(true);
+  
 
   const onEmojiClick =  (event, emojiObject) => {
     setCurrentMessage(prevInput=> prevInput + emojiObject.emoji);
@@ -32,19 +33,22 @@ export const Chat = () => {
       await socket.emit("send_message", messageData);
       setMessages((list)=>[...list, messageData]);
       setCurrentMessage('')
+     
     }
   }
+
   useEffect(()=>{
     socket.on("receive_message", (data)=>{
       setMessages((list)=>[...list,data])
     })
+   
   },[socket])
- 
 
+  
   return (
   <div className='Chat'>
     <div className='chat-header'>
-      <h3> Room Chatting</h3>
+      <h3> {`Chatting with Room ${room}`}</h3>
       <span onClick={()=>setMode(!mode)}>
       {
         mode?
@@ -91,8 +95,12 @@ export const Chat = () => {
         placeholder='Chatting now..'
         value={currentMessage}
         onChange={(e)=>setCurrentMessage(e.target.value)}
-        onClick={()=>setShowEmoji(false)}
+        onClick={(e)=>{
+          setShowEmoji(false)
+          }}
         onKeyPress={(e)=>{e.key==='Enter'&& sendMessage()}}
+        
+        
         variant="standard"
             /> 
       <Button 
