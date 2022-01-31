@@ -10,10 +10,12 @@ const socket = io.connect("http://localhost:3001");
 
 function App() {
   const [username, setUsername] = useState("");
+  const [ color, setColor ] = useState("");
   const [room, setRoom] = useState("");
   const[ isLogged, setIsLogged]=useState(false);
   
   const value={
+    color, setColor,
     username, setUsername,
     room, setRoom,
     setIsLogged,socket

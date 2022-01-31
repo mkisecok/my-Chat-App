@@ -7,12 +7,13 @@ import './Login.scss'
 export default function Login() {
 const navigate = useNavigate();
 
-    const {username,room,socket,setIsLogged,setRoom,setUsername}= useContext(ChatContext);
+    const {username,room,socket, color ,setIsLogged,setRoom,setUsername, setColor }= useContext(ChatContext);
 
     const joinRoom=()=>{
         if(username!=='' && room !=='' )
         {
           socket.emit('joinRoom', room)
+          setColor(Math.floor(Math.random() * 16777215).toString(16));
           navigate("/chat")
           setIsLogged(true)
         }
