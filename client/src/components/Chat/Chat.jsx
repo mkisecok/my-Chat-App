@@ -6,7 +6,7 @@ import './Chat.scss'
 
 export const Chat = () => {
   
-  const {socket,username,room}=useContext(ChatContext)
+  const {socket,username,room, color }=useContext(ChatContext)
  
   const [currentMessage,setCurrentMessage]=useState('');
   const [messages,setMessages]=useState([]);
@@ -26,6 +26,7 @@ export const Chat = () => {
       const messageData={
         room:room,
         author:username,
+        color: "#" + color,
         userId:socket.id,
         message:currentMessage,
         time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),
@@ -65,7 +66,7 @@ export const Chat = () => {
     return(
       <div key={i} className='message' id={socket.id===messageData.userId ? 'yours':'others' }>
 
-        <p className='message-content'>
+        <p className='message-content' style={{ background: messageData.color }}>
           {
             messageData.message
           }
@@ -74,8 +75,6 @@ export const Chat = () => {
         <span className='author'>{messageData.userId===socket.id ?'You': messageData.author}</span>
         <span className='time'> {messageData.time}</span>
         </div>
-        
-
       </div>
     )
   })
