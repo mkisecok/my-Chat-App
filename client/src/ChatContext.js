@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const ChatContext= createContext()
+const ChatContext= createContext();
 
-export { ChatContext }
+export { ChatContext };
