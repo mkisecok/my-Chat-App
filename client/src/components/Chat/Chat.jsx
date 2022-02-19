@@ -9,6 +9,8 @@ import {
     useContext,
     ChatContext,
     Picker,
+    Moment,
+    ChatTimeUpdater,
     DarkModeIcon,
     LightModeIcon,
     ReactMarkdown,
@@ -59,7 +61,7 @@ export const Chat = () =>
                 color: '#' + color,
                 userId:socket.id,
                 message:currentMessage,
-                time:new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
+                time: new Date().getTime()
             };
             
             await socket.emit('send_message', messageData);
@@ -107,7 +109,9 @@ export const Chat = () =>
                               
                                     <div className='message-bottom'>
                                         <span className='author'>{messageData.userId===socket.id ?'You': messageData.author}</span>
-                                        <span className='time'> {messageData.time}</span>
+                                        <span className='time'>
+                                            &nbsp;<ChatTimeUpdater timestamp={messageData.time} interval={1000} />
+                                        </span>
                                     </div>
                                 </div>
                             );
