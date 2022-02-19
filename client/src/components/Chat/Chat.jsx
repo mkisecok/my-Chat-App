@@ -101,12 +101,15 @@ export const Chat = () =>
                             return(
                                 <div key={i} className='message' id={socket.id===messageData.userId ? 'yours':'others' }>
 
-                                    <ReactMarkdown
+                                    <div
                                         className='message-content'
                                         style={{ background: messageData.color }}
-                                        children={ messageData.message }
-                                    ></ReactMarkdown>
-                              
+                                    >
+                                        <ReactMarkdown
+                                            children={ messageData.message }
+                                        ></ReactMarkdown>
+                                    </div>
+
                                     <div className='message-bottom'>
                                         <span className='author'>{messageData.userId===socket.id ?'You': messageData.author}</span>
                                         <span className='time'>
