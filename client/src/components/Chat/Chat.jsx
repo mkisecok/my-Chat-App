@@ -50,6 +50,13 @@ export const Chat = () =>
         setOpenDialog(false);
     };
 
+    const handleCheckBrightness = (input) =>
+    {
+        const brightness = Math.round(((input[ 0 ] * 299) + (input[ 1 ] * 587) + (input[ 2 ] * 114)) / 1000 );
+
+        return brightness > 125 ? 'black' : 'white';
+    };
+
     const sendMessage= async() =>
     {
         if(currentMessage !== '')
@@ -58,7 +65,7 @@ export const Chat = () =>
             {
                 room:room,
                 author:username,
-                color: '#' + color,
+                color: color,
                 userId:socket.id,
                 message:currentMessage,
                 time: new Date().getTime()
@@ -103,7 +110,7 @@ export const Chat = () =>
 
                                     <div
                                         className='message-content'
-                                        style={{ background: messageData.color }}
+                                        style={{ background: `rgb(${messageData.color[ 0 ]}, ${ messageData.color[ 1 ]}, ${ messageData.color[ 2 ] })`, color: handleCheckBrightness(messageData.color) }}
                                     >
                                         <ReactMarkdown
                                             children={ messageData.message }

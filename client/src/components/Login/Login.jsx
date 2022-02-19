@@ -20,12 +20,21 @@ export default function Login()
             username, room, socket, setIsLogged, setRoom, setUsername, setColor 
         } = useContext(ChatContext);
 
+    const createRandomColor = () =>
+    {
+        const rgb1 = Math.round(Math.random() * 255);
+        const rgb2 = Math.round(Math.random() * 255);
+        const rgb3 = Math.round(Math.random() * 255);
+
+        return [ rgb1, rgb2, rgb3 ];
+    };
+
     const joinRoom=() =>
     {
         if(username!=='' && room !=='' )
         {
             socket.emit('joinRoom', room);
-            setColor(Math.floor(Math.random() * 16777215).toString(16));
+            setColor(createRandomColor);
             navigate('/chat');
             setIsLogged(true);
         }
