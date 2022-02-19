@@ -4,12 +4,15 @@ import {
     ScrollToBottom,
     TextField,
     SendIcon,
+    FeedIcon,
     Button,
     useContext,
     ChatContext,
     Picker,
     DarkModeIcon,
-    LightModeIcon
+    LightModeIcon,
+    ReactMarkdown,
+    ChatHelpDialog
 } from './index';
 
 import './Chat.scss';
@@ -27,11 +30,22 @@ export const Chat = () =>
     const [ messages, setMessages ]=useState([]);
     const [ showEmoji, setShowEmoji ]=useState(false);
     const [ mode, setMode ]= useState(true);
+    const [ openDialog, setOpenDialog ] = useState(false);
 
     const onEmojiClick =  (event, emojiObject) =>
     {
         setCurrentMessage(prevInput => prevInput + emojiObject.emoji);
         setShowEmoji(false);
+    };
+
+    const handleClickOpenDialog = () =>
+    {
+        setOpenDialog(true);
+    };
+    
+    const handleCloseDialog = (value) =>
+    {
+        setOpenDialog(false);
     };
 
     const sendMessage= async() =>
@@ -85,11 +99,11 @@ export const Chat = () =>
                             return(
                                 <div key={i} className='message' id={socket.id===messageData.userId ? 'yours':'others' }>
 
-                                    <p className='message-content' style={{ background: messageData.color }}>
-                                        {
-                                            messageData.message
-                                        }
-                                    </p>
+                                    <ReactMarkdown
+                                        className='message-content'
+                                        style={{ background: messageData.color }}
+                                        children={ messageData.message }
+                                    ></ReactMarkdown>
                               
                                     <div className='message-bottom'>
                                         <span className='author'>{messageData.userId===socket.id ?'You': messageData.author}</span>
@@ -115,7 +129,11 @@ export const Chat = () =>
                         onClick = { (e) => { setShowEmoji(false); }}
                         onKeyPress = { (e) => { e.key==='Enter'&& sendMessage(); }}
                         variant = "standard"
-                    /> 
+                    />
+
+                    <Button variant="outlined" onClick={ handleClickOpenDialog }>
+                        <FeedIcon />
+                    </Button>
       
                     <Button 
                         variant = "contained" 
@@ -129,6 +147,10 @@ export const Chat = () =>
                     showEmoji && <Picker onEmojiClick = { onEmojiClick } pickerStyle = {{ marginTop:'1em', width:'100%', height:'15rem' }}/>
                 }
             </div>
+            <ChatHelpDialog
+                open={openDialog}
+                onClose={handleCloseDialog}
+            />
         </div>
     );
 };
