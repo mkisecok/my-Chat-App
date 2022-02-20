@@ -6,7 +6,7 @@ import Login from './components/Login/Login';
 import { ChatContext } from './ChatContext';
 
 const socket = io.connect('http://localhost:3001');
-// 'http://localhost:3001'
+
 function App()
 {
     const [ username, setUsername ] = useState('');

@@ -80,18 +80,15 @@ export const Chat = () =>
         }
     };
 
-    const handleKeyPress = async (e) =>
+    const handleFocus = async (e) =>
     {
-        if(e.key === 'Enter')
-        {
-            sendMessage();
-        }
+        
         await socket.emit('send_typing', { username, room } );
         setTyping(username);
-        if(currentMessage !== '')
-        {
-            setTyping('');
-        } 
+        // if(currentMessage !== '')
+        // {
+        //     setTyping('');
+        // } 
         
     };
 
@@ -115,9 +112,9 @@ export const Chat = () =>
         <div className='Chat'>
             <div className='chat-header'>
                 {
-                    typing === '' ?
+                    typing === ''  ?
                         <p className='typing'>  {`Chatting with Room ${room}`}</p>:
-                        <p className='typing'> {`${typing} typing now...` }</p>
+                        <p className='typing'> {typing!==username ?`${typing.toUpperCase()} typing now...`: 'You typing now...' }</p>
                 }
                 
                 <span onClick={ () => setMode(!mode)}>
@@ -170,10 +167,8 @@ export const Chat = () =>
                         value = { currentMessage }
                         onChange = { (e) => { setCurrentMessage(e.target.value); }}
                         onClick = { (e) => { setShowEmoji(false); }}
-                        // onKeyPress = { handleKeyPress }
-                        onFocus={handleKeyPress}
-                        onBlur = { () => { setTyping(''); } }
-                        // (e) => { e.key==='Enter'&& sendMessage();} 
+                        onFocus={handleFocus}
+                        onKeyPress = { (e) => { e.key === 'Enter' && sendMessage();  } }
                         variant = "standard"
                     />
 
