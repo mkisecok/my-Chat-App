@@ -5,7 +5,7 @@ import { Chat } from './components/Chat/Chat';
 import Login from './components/Login/Login';
 import { ChatContext } from './ChatContext';
 
-const socket = io.connect('/');
+const socket = io.connect('http://localhost:3001');
 // 'http://localhost:3001'
 function App()
 {

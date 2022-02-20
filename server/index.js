@@ -31,6 +31,11 @@ io.on('connection', (socket) =>
         console.log(data);
         socket.to(data.room).emit('receive_message', data);
     });
+    socket.on('send_typing', (data) => 
+    {
+        console.log('kim', data);
+        socket.to(data.room).emit('receive_typing', data);
+    });
 
     socket.on('disconnect', () =>
     {

@@ -16,11 +16,13 @@
         display: flex;
         justify-content: space-between;
 
-        h3
+        .typing
         {
+            font-weight:bolder;
+            padding: 4px;
             cursor: pointer;
-        }
 
+        }
         span
         {
             align-self: center;

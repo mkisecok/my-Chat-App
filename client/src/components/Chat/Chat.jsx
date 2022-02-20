@@ -9,7 +9,6 @@ import {
     useContext,
     ChatContext,
     Picker,
-    Moment,
     ChatTimeUpdater,
     DarkModeIcon,
     LightModeIcon,
@@ -33,6 +32,7 @@ export const Chat = () =>
     const [ showEmoji, setShowEmoji ]=useState(false);
     const [ mode, setMode ]= useState(true);
     const [ openDialog, setOpenDialog ] = useState(false);
+    const [ typing, setTyping ] = useState('');
 
     const onEmojiClick =  (event, emojiObject) =>
     {
@@ -75,7 +75,24 @@ export const Chat = () =>
             
             setMessages((list) => [ ...list, messageData ]);
             setCurrentMessage('');
+            setTyping('');
+
         }
+    };
+
+    const handleKeyPress = async (e) =>
+    {
+        if(e.key === 'Enter')
+        {
+            sendMessage();
+        }
+        await socket.emit('send_typing', { username, room } );
+        setTyping(username);
+        if(currentMessage !== '')
+        {
+            setTyping('');
+        } 
+        
     };
 
     useEffect(() =>
@@ -83,14 +100,26 @@ export const Chat = () =>
         socket.on('receive_message', (data) => 
         {
             setMessages((list) => [ ...list, data ]);
+            setTyping('');
+        });
+        socket.on('receive_typing', (data) => 
+        {   
+            
+            setTyping(data.username);
+            
         });
    
     }, [ socket ]);
-
+    
     return (
         <div className='Chat'>
             <div className='chat-header'>
-                <h3> {`Chatting with Room ${room}`}</h3>
+                {
+                    typing === '' ?
+                        <p className='typing'>  {`Chatting with Room ${room}`}</p>:
+                        <p className='typing'> {`${typing} typing now...` }</p>
+                }
+                
                 <span onClick={ () => setMode(!mode)}>
                     {
                         mode?
@@ -141,7 +170,10 @@ export const Chat = () =>
                         value = { currentMessage }
                         onChange = { (e) => { setCurrentMessage(e.target.value); }}
                         onClick = { (e) => { setShowEmoji(false); }}
-                        onKeyPress = { (e) => { e.key==='Enter'&& sendMessage(); }}
+                        // onKeyPress = { handleKeyPress }
+                        onFocus={handleKeyPress}
+                        onBlur = { () => { setTyping(''); } }
+                        // (e) => { e.key==='Enter'&& sendMessage();} 
                         variant = "standard"
                     />
 
