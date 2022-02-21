@@ -13,7 +13,7 @@ import {
     LightModeIcon,
     ReactMarkdown,
     MouseOverPopover,
-    ChatHelpDialog
+    
 } from './index';
 
 import './Chat.scss';
@@ -31,7 +31,6 @@ export const Chat = () =>
     const [ messages, setMessages ]=useState([]);
     const [ showEmoji, setShowEmoji ]=useState(false);
     const [ mode, setMode ]= useState(true);
-    // const [ openDialog, setOpenDialog ] = useState(false);
     const [ typing, setTyping ] = useState('');
 
     const onEmojiClick =  (event, emojiObject) =>
@@ -39,11 +38,6 @@ export const Chat = () =>
         setCurrentMessage(prevInput => prevInput + emojiObject.emoji);
         setShowEmoji(false);
     };
-
-    // const handleCloseDialog = (value) =>
-    // {
-    //     setOpenDialog(false);
-    // };
 
     const handleCheckBrightness = (input) =>
     {
@@ -75,9 +69,13 @@ export const Chat = () =>
         }
     };
 
-    const handleFocus = async (e) =>
+    const handleKeyPress = async (e) =>
     {
-        
+        // if(e.key === 'Enter')
+        // {
+        //     sendMessage();
+            
+        // }
         await socket.emit('send_typing', { username, room } );
         setTyping(username);
         // if(currentMessage !== '')
@@ -162,14 +160,11 @@ export const Chat = () =>
                         value = { currentMessage }
                         onChange = { (e) => { setCurrentMessage(e.target.value); }}
                         onClick = { (e) => { setShowEmoji(false); }}
-                        onFocus={handleFocus}
-                        onKeyPress = { (e) => { e.key === 'Enter' && sendMessage();  } }
+                        onKeyPress={handleKeyPress}
+                        onBlur = { () => { setTyping(''); } }
                         variant = "standard"
                     />
 
-                    {/* <Button variant="outlined" className='dialog_btn' onClick={ handleClickOpenDialog }>
-                        <FeedIcon />
-                    </Button> */}
                     <MouseOverPopover/>
                     <Button 
                         variant = "contained" 
@@ -183,10 +178,7 @@ export const Chat = () =>
                     showEmoji && <Picker onEmojiClick = { onEmojiClick } pickerStyle = {{ marginTop:'1em', width:'100%', height:'15rem' }}/>
                 }
             </div>
-            {/* <ChatHelpDialog
-                open={openDialog}
-                onClose={handleCloseDialog}
-            /> */}
+            
         </div>
     );
 };
