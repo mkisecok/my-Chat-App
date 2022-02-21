@@ -15,6 +15,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { ChatHelpDialog } from './ChatHelpDialog';
 import { ChatTimeUpdater } from './ChatTimeUpdater';
+import  MouseOverPopover  from './DiologButton';
 export{
     ChatHelpDialog,
     useEffect,
@@ -28,6 +29,7 @@ export{
     FeedIcon,
     MessageIcon,
     Button,
+    MouseOverPopover,
     ReactMarkdown,
     useContext,
     ChatContext,

@@ -4,15 +4,15 @@ import {
     ScrollToBottom,
     TextField,
     SendIcon,
-    FeedIcon,
-    Button,
     useContext,
     ChatContext,
     Picker,
+    Button,
     ChatTimeUpdater,
     DarkModeIcon,
     LightModeIcon,
     ReactMarkdown,
+    MouseOverPopover,
     ChatHelpDialog
 } from './index';
 
@@ -31,7 +31,7 @@ export const Chat = () =>
     const [ messages, setMessages ]=useState([]);
     const [ showEmoji, setShowEmoji ]=useState(false);
     const [ mode, setMode ]= useState(true);
-    const [ openDialog, setOpenDialog ] = useState(false);
+    // const [ openDialog, setOpenDialog ] = useState(false);
     const [ typing, setTyping ] = useState('');
 
     const onEmojiClick =  (event, emojiObject) =>
@@ -40,15 +40,10 @@ export const Chat = () =>
         setShowEmoji(false);
     };
 
-    const handleClickOpenDialog = () =>
-    {
-        setOpenDialog(true);
-    };
-    
-    const handleCloseDialog = (value) =>
-    {
-        setOpenDialog(false);
-    };
+    // const handleCloseDialog = (value) =>
+    // {
+    //     setOpenDialog(false);
+    // };
 
     const handleCheckBrightness = (input) =>
     {
@@ -172,10 +167,10 @@ export const Chat = () =>
                         variant = "standard"
                     />
 
-                    <Button variant="outlined" onClick={ handleClickOpenDialog }>
+                    {/* <Button variant="outlined" className='dialog_btn' onClick={ handleClickOpenDialog }>
                         <FeedIcon />
-                    </Button>
-      
+                    </Button> */}
+                    <MouseOverPopover/>
                     <Button 
                         variant = "contained" 
                         className = 'button'
@@ -188,10 +183,10 @@ export const Chat = () =>
                     showEmoji && <Picker onEmojiClick = { onEmojiClick } pickerStyle = {{ marginTop:'1em', width:'100%', height:'15rem' }}/>
                 }
             </div>
-            <ChatHelpDialog
+            {/* <ChatHelpDialog
                 open={openDialog}
                 onClose={handleCloseDialog}
-            />
+            /> */}
         </div>
     );
 };

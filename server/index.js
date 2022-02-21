@@ -33,7 +33,7 @@ io.on('connection', (socket) =>
     });
     socket.on('send_typing', (data) => 
     {
-        console.log('kim', data);
+        console.log(data);
         socket.to(data.room).emit('receive_typing', data);
     });
 
