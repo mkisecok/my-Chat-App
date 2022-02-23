@@ -9,7 +9,6 @@ import MessageIcon from '@mui/icons-material/Message';
 import Button from '@mui/material/Button';
 import { useContext } from 'react';
 import { ChatContext } from '../../ChatContext';
-import Moment from 'react-moment';
 import Picker from 'emoji-picker-react';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -19,7 +18,6 @@ import  MouseOverPopover  from './DiologButton';
 export{
     ChatHelpDialog,
     useEffect,
-    Moment,
     ChatTimeUpdater,
     useState,
     ScrollToBottom,

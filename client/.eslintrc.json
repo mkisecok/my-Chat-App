@@ -18,7 +18,7 @@
         "quotes": ["error", "single"],
         "no-var": ["error" ],
         "no-use-before-define": [ "error" ],
-        "no-unused-vars": [ "warn" ],
+        // "no-unused-vars": [ "warn" ],
         "array-bracket-newline": [ "error", { "multiline": true } ],
         "computed-property-spacing": ["error", "always"],
         "object-curly-spacing": ["error", "always"],
@@ -32,7 +32,7 @@
         "dot-location": ["error", "property"],
         "no-empty-function": "error",
         "arrow-spacing": "error",
-        "brace-style": ["error", "allman", { "allowSingleLine": true }],
+        "brace-style": ["error", "allan", { "allowSingleLine": true }],
         "comma-spacing": ["error", { "before": false, "after": true }],
         "indent": ["error", 4],
         "spaced-comment": ["error", "always"]
