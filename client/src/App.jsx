@@ -5,7 +5,7 @@ import { Chat } from './components/Chat/Chat';
 import Login from './components/Login/Login';
 import { ChatContext } from './ChatContext';
 
-const socket = io.connect('http://localhost:3001');
+const socket = io.connect('https://markdown-chat-app.herokuapp.com/');
 
 function App()
 {

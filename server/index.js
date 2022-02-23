@@ -5,18 +5,18 @@ const cors = require('cors');
 const { Server } = require('socket.io');
 require('dotenv').config();
 app.use(cors());
-
+const router = require('./router');
 const server = http.createServer(app);
 
 const io = new Server(server, 
     {
         cors: {
-            origin: 'http://localhost:3000',
+            origin: '*',
             methods: [ 'GET', 'POST' ],
         },
     }
 );
-
+app.use(router);
 io.on('connection', (socket) =>
 {
     console.log(`User connected with ${socket.id} `);
