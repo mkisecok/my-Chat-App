@@ -1,4 +1,4 @@
-import moment from 'moment';
+
 import { useEffect, useState } from 'react';
 
 const formatter = (timestamp) =>
