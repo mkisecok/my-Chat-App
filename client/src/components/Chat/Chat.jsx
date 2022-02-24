@@ -71,17 +71,14 @@ export const Chat = () =>
 
     const handleKeyPress = async (e) =>
     {
+        
+        await socket.emit('send_typing', { username, room } );
+        setTyping(username);
         if(e.key === 'Enter')
         {
             sendMessage();
             
         }
-        await socket.emit('send_typing', { username, room } );
-        setTyping(username);
-        // if(currentMessage !== '')
-        // {
-        //     setTyping('');
-        // } 
         
     };
 
